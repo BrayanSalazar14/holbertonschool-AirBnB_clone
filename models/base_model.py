@@ -1,5 +1,5 @@
 import uuid
-import datetime import datetime
+from datetime import datetime
 """
 Module that defines all common attributes/methods for other classes
 """
