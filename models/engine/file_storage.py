@@ -1,5 +1,6 @@
 import json
 import os.path as path
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -25,5 +26,5 @@ class FileStorage:
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
-                    attr = eval(value["__class__"])(**value)
+                    attr = eval(value["__class__"])("**value")
                     self.__objects[key] = attr
