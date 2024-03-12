@@ -30,7 +30,6 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        print(self.__dict__)
         obj_dictionary = self.__dict__.copy()
         obj_dictionary["__class__"] = self.__class__.__name__
         obj_dictionary["created_at"] = self.created_at.isoformat()
