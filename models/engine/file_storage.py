@@ -26,5 +26,6 @@ class FileStorage:
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
-                    attr = eval(value["__class__"])("**value")
+                    class_name = value["__class__"]
+                    attr = eval(class_name)("**value")
                     self.__objects[key] = attr
