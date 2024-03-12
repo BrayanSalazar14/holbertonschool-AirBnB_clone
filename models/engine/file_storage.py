@@ -14,14 +14,14 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        object = {}
+        objs = {}
         for key, obj in self.__objects.items():
-            object[key] = obj.to_dict()
+            objs[key] = obj.to_dict()
 
         with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.dump(object, file)
+            json.dump(objs, file)
 
     def reload(self):
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
-                print("hi")
+                json.load(file)
