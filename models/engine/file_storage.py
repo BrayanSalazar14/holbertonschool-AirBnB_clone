@@ -1,5 +1,4 @@
 import json
-import os.path as path
 from models.base_model import BaseModel
 
 
@@ -23,9 +22,11 @@ class FileStorage:
             json.dump(objs, file)
 
     def reload(self):
-        if path.exists(self.__file_path):
+        try:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
                     class_name = value["__class__"]
                     attr = eval(class_name + "(**value)")
                     self.__objects[key] = attr
+        except FileNotFoundError:
+            pass
