@@ -24,4 +24,6 @@ class FileStorage:
     def reload(self):
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
-                json.load(file)
+                for key, value in json.load(file).items():
+                    attr = eval(value["__class__"])
+                    self.__objects[key] = attr
