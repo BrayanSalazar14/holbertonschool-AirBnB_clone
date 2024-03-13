@@ -1,5 +1,4 @@
 import json
-from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -22,6 +21,7 @@ class FileStorage:
             json.dump(objs, file)
 
     def reload(self):
+        from ..base_model import BaseModel
         try:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
