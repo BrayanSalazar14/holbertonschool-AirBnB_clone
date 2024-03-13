@@ -18,12 +18,12 @@ class FileStorage:
         for key, obj in self.__objects.items():
             objs[key] = obj.to_dict()
 
-        with open(self.__file_path, "w", encoding="utf-8") as file:
+        with open(self.__file_path, mode="w", encoding="utf-8") as file:
             json.dump(objs, file)
 
     def reload(self):
         try:
-            with open(self.__file_path, "r", encoding="utf-8") as file:
+            with open(self.__file_path, mode="r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
                     obj = eval(value["__class__"])(**value)
                     self.__objects[key] = obj

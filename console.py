@@ -7,19 +7,15 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNH console """
-    prompt = '(hbnb) '
-
-    def do_EOF(self, arg):
-        """Exits console"""
-        return True
-
-    def emptyline(self):
-        """ overwriting the emptyline method """
-        return False
+    """ Simple command processor example. """
+    prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, arg):
+        """Exit the console"""
         return True
 
 
