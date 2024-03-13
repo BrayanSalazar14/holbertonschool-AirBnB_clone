@@ -1,9 +1,14 @@
 import cmd
+"""
+Module contains the entry point of the command interpreter:
+"""
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    Simple command processor example.
+    """
     prompt = "(hbnb) "
-    file = None
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
