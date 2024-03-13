@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import cmd
 """
 Module contains the entry point of the command interpreter:
@@ -5,9 +7,7 @@ Module contains the entry point of the command interpreter:
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Simple command processor example.
-    """
+    """ Simple command processor example. """
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -15,8 +15,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """Exit the program"""
-        print()
+        """Exit the console"""
         return True
 
 
