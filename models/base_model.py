@@ -15,18 +15,11 @@ class BaseModel:
             storage.new(self)
             return
         for key, value in kwargs.items():
-            if key == "__class__":
-                continue
+            if key != "__class__":
+                self.__dict__[key] = value
             if key == "created_at" or key == "updated_at":
                 self.__dict__[key] = datetime.strptime(
                     value, "%Y-%m-%dT%H:%M:%S.%f")
-            else:
-                self.__dict__[key] = value
-        # for key, value in kwargs.items():
-        #     if key != "__class__":
-        #         setattr(self, key, value)
-        #     if key == "created_at" or key == "updated_at":
-        #         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {str(self.__dict__)}"
