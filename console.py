@@ -4,6 +4,7 @@ Module contains the entry point of the command interpreter:
 """
 
 import cmd
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,11 +13,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
-        return True
+        sys.exit()
 
     def do_EOF(self, arg):
         """Exit the console"""
-        return True
+        sys.exit()
 
 
 if __name__ == '__main__':
