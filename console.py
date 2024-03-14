@@ -80,9 +80,8 @@ class HBNBCommand(cmd.Cmd):
         try:
             if arg:
                 class_name = eval(arg)
-                list_obj = [index.__str__()
-                            for index in storage.all().values()]
-                print(list_obj)
+            list_obj = [index.__str__() for index in storage.all().values()]
+            print(list_obj)
         except NameError:
             print("** class doesn't exist **")
 
