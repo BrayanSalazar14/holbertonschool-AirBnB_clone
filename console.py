@@ -43,9 +43,12 @@ class HBNBCommand(cmd.Cmd):
             if class_id not in storage.all().keys():
                 print("** no instance found **")
                 return
-            print(storage.all().values())
-            # for key, value in storage.all().items():
-            #     if class_id == key:
+            for key, value in storage.all().items():
+                if class_id == key:
+                    print(value)
+            # Other form
+            # for value in storage.all().values():
+            #     if class_id in value.__dict__["id"]:
             #         print(value)
         except NameError:
             print("** class doesn't exist **")
