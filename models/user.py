@@ -1,9 +1,8 @@
-#!/usr/bin/python3
+from models import storage
+from models.base_model import BaseModel
 """
 Module in the User
 """
-from models import storage
-from models.base_model import BaseModel
 
 
 class User(BaseModel):
