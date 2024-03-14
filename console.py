@@ -48,6 +48,11 @@ class HBNBCommand(cmd.Cmd):
         """Exit the console"""
         sys.exit()
 
+    def do_emptyLine(self, arg):
+        """Print empty line"""
+        print("\n")
+        return False
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
