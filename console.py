@@ -56,10 +56,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return
             class_id = data[0] + "." + data[1]
-            with open("file.json", "w", encoding="utf-8") as file:
-                if class_id in storage.all().keys():
+            if class_id in storage.all().keys():
+                with open("file.json", "w", encoding="utf-8") as file:
                     storage.all().pop(class_id)
                     storage.save()
+            else:
+                print("** no instance found **")
+        except NameError:
+            print("** class doesn't exist **")
+
+    def do_all(self, arg):
+        """Prints all string representation of all instances based
+        or not on the class name"""
+        try:
+            list_obj = list(storage.all().values())
+            print(*list_obj)
         except NameError:
             print("** class doesn't exist **")
 
