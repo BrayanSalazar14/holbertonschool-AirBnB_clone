@@ -66,9 +66,12 @@ class HBNBCommand(cmd.Cmd):
                 return
             class_id = data[0] + "." + data[1]
             if class_id in storage.all().keys():
-                with open("file.json", "w", encoding="utf-8"):
-                    storage.all().pop(class_id)
-                    storage.save()
+                try:
+                    with open("file.json", "w", encoding="utf-8"):
+                        storage.all().pop(class_id)
+                        storage.save()
+                except FileNotFoundError:
+                    pass
             else:
                 print("** no instance found **")
         except NameError:
