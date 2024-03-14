@@ -40,9 +40,13 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return
             class_id = data[0] + "." + data[1]
-            for key, value in storage.all().items():
-                if class_id == key:
-                    print(value)
+            if class_id not in storage.all().keys():
+                print("** no instance found **")
+                return
+            print(storage.all().values())
+            # for key, value in storage.all().items():
+            #     if class_id == key:
+            #         print(value)
         except NameError:
             print("** class doesn't exist **")
 
@@ -71,6 +75,35 @@ class HBNBCommand(cmd.Cmd):
         try:
             list_obj = [index.__str__() for index in storage.all().values()]
             print(list_obj)
+        except NameError:
+            print("** class doesn't exist **")
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id by adding
+        or updating attribute (save the change into the JSON file)"""
+        if not arg:
+            print("** class name missing **")
+            return
+        try:
+            data = arg.split()
+            if len(data) == 1:
+                print("** instance id missing **")
+                return
+            elif len(data) == 2:
+                print("** attribute name missing **")
+                return
+            elif len(data) == 3:
+                print("** value missing **")
+                return
+            class_id = data[0] + "." + data[1]
+            atrr_name = data[2]
+            if class_id not in storage.all().keys():
+                print("** no instance found **")
+                return
+            for key, value in storage.all().items():
+                if class_id == key:
+                    value.__dict__[atrr_name] = data[3]
+                    storage.save()
         except NameError:
             print("** class doesn't exist **")
 

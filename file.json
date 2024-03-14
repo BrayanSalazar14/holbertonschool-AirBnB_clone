@@ -4,5 +4,12 @@
         "created_at": "2024-03-14T10:47:47.472164",
         "updated_at": "2024-03-14T10:47:47.472176",
         "__class__": "BaseModel"
+    },
+    "BaseModel.cdb7898f-572e-4a15-98ff-36a97e2a5a11": {
+        "id": "cdb7898f-572e-4a15-98ff-36a97e2a5a11",
+        "created_at": "2024-03-14T11:58:30.254174",
+        "updated_at": "2024-03-14T11:58:49.519622",
+        "email": "\"aibnb@mail.com\"",
+        "__class__": "BaseModel"
     }
 }
