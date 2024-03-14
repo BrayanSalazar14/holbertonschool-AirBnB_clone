@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             data = arg.split()
-            if len(data) == 0:
+            if len(data) == 1:
                 print("** instance id missing **")
                 return
             class_id = data[0] + "." + data[1]
@@ -51,10 +51,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             data = arg.split()
-            if len(data) == 0:
-                print("** instance id missing **")
-                return
-            elif len(data) == 1:
+            if len(data) == 1:
                 print("** instance id missing **")
                 return
             class_id = data[0] + "." + data[1]
