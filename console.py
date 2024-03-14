@@ -18,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id"""
         if not arg:
             print("** class name missing **")
+            return
         try:
             class_name = arg
             new_instance = eval(class_name)()
@@ -36,8 +37,10 @@ class HBNBCommand(cmd.Cmd):
             if len(data) == 0:
                 print("** instance id missing **")
                 return
-            id = data[1]
-
+            class_id = data[0] + "." + data[1]
+            for key, value in storage.all().items():
+                if class_id == key:
+                    print(value)
         except NameError:
             print("** class doesn't exist **")
 
@@ -51,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyLine(self, arg):
         """Print empty line"""
-        return False
+        pass
 
 
 if __name__ == '__main__':
