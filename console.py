@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             class_id = data[0] + "." + data[1]
             if class_id in storage.all().keys():
-                with open("file.json", "w", encoding="utf-8") as file:
+                with open("file.json", "w", encoding="utf-8"):
                     storage.all().pop(class_id)
                     storage.save()
             else:
@@ -69,8 +69,8 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based
         or not on the class name"""
         try:
-            list_obj = list(storage.all().values())
-            print(*list_obj)
+            list_obj = [index.__str__() for index in storage.all().values()]
+            print(list_obj)
         except NameError:
             print("** class doesn't exist **")
 
