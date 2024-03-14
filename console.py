@@ -32,6 +32,7 @@ class HBNBCommand(cmd.Cmd):
         instance based on the class name and id"""
         if not arg:
             print("** class name missing **")
+            return
         try:
             data = arg.split()
             if len(data) == 0:
@@ -41,6 +42,22 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 if class_id == key:
                     print(value)
+        except NameError:
+            print("** class doesn't exist **")
+
+    def do_destroy(self, arg):
+        if not arg:
+            print("** class name missing **")
+            return
+        try:
+            data = arg.split()
+            if len(data) == 0:
+                print("** instance id missing **")
+                return
+            class_id = data[0] + "." + data[1]
+            if class_id in storage.all().keys():
+                storage.all().pop(class_id)
+
         except NameError:
             print("** class doesn't exist **")
 
