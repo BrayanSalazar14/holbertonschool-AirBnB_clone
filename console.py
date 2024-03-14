@@ -2,6 +2,7 @@
 """
 Module contains the entry point of the command interpreter:
 """
+import json
 import os.path
 import cmd
 import sys
@@ -55,8 +56,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return
             class_id = data[0] + "." + data[1]
-            if class_id in storage.all().keys():
-                storage.all().pop(class_id)
+            with open("file.json", "w", encoding="utf-8") as file:
+                if class_id in storage.all().keys():
+                    storage.all().pop(class_id)
+                    storage.save()
         except NameError:
             print("** class doesn't exist **")
 
