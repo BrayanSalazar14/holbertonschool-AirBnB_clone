@@ -36,6 +36,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             data = arg.split()
+            class_name = eval(data[0])
             if len(data) == 1:
                 print("** instance id missing **")
                 return
@@ -59,6 +60,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             data = arg.split()
+            class_name = eval(data[0])
             if len(data) == 1:
                 print("** instance id missing **")
                 return
@@ -76,6 +78,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based
         or not on the class name"""
         try:
+            class_name = eval(arg)
             list_obj = [index.__str__() for index in storage.all().values()]
             print(list_obj)
         except NameError:
@@ -89,6 +92,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             data = arg.split()
+            class_name = eval(data[0])
             if len(data) == 1:
                 print("** instance id missing **")
                 return
