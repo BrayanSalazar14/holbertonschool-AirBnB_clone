@@ -78,9 +78,11 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based
         or not on the class name"""
         try:
-            class_name = eval(arg)
-            list_obj = [index.__str__() for index in storage.all().values()]
-            print(list_obj)
+            if arg:
+                class_name = eval(arg)
+                list_obj = [index.__str__()
+                            for index in storage.all().values()]
+                print(list_obj)
         except NameError:
             print("** class doesn't exist **")
 
