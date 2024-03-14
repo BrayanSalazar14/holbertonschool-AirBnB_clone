@@ -7,6 +7,7 @@ import os.path
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -66,12 +67,9 @@ class HBNBCommand(cmd.Cmd):
                 return
             class_id = data[0] + "." + data[1]
             if class_id in storage.all().keys():
-                try:
-                    with open("file.json", "w", encoding="utf-8"):
-                        storage.all().pop(class_id)
-                        storage.save()
-                except FileNotFoundError:
-                    pass
+                with open("file.json", "w", encoding="utf-8"):
+                    storage.all().pop(class_id)
+                    storage.save()
             else:
                 print("** no instance found **")
         except NameError:
