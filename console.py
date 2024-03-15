@@ -35,27 +35,26 @@ class HBNBCommand(cmd.Cmd):
         new_instance.save()
         print(new_instance.id)
 
-    def do_show(self, line):
-        """Prints the string representation of an instance"""
-        if not line:
-            print(" class name missing ")
-        else:
-            list_class = set([
-                value.__class__.__name__ for value in storage.all().values()])
-            class_name = line.split()
-            if class_name[0] not in list_class:
-                print("** class doesn't exist **")
-                return
-            if len(class_name) == 1:
-                print("** instance id missing **")
-                return
-            instance_id = class_name[1]
-            key = class_name[0] + "." + instance_id
-            if key not in storage.all().keys():
-                print(" no instance found ")
-            else:
-                print(storage.all()[key])
-
+    def do_show(self, arg):
+        """Prints the string representation of an
+        instance based on the class name and id"""
+        if not arg:
+            print("** class name missing **")
+            return
+        data = arg.split()
+        if data[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(data) == 1:
+            print("** instance id missing **")
+            return
+        class_id = data[0] + "." + data[1]
+        if class_id not in storage.all().keys():
+            print("** no instance found **")
+            return
+        for key, value in storage.all().items():
+            if class_id == key:
+                print(value)
             # Other form
             # for value in storage.all().values():
             #     if class_id in value.__dict__["id"]:
