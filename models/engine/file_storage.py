@@ -30,7 +30,6 @@ class FileStorage:
         from ..review import Review
         from ..city import City
         from ..amenity import Amenity
-        from ..base_model import BaseModel
         try:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 for key, value in json.load(file).items():
