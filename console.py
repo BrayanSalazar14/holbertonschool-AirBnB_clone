@@ -3,7 +3,6 @@
 Module contains the entry point of the command interpreter:
 """
 import json
-import os.path
 import cmd
 import sys
 from models import storage
@@ -14,6 +13,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.user import User
+
+classes = ["BaseModel", "City", "Place", "State", "Review", "User", "Amenity"]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,13 +27,13 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        try:
-            class_name = arg
-            new_instance = eval(class_name)()
-            new_instance.save()
-            print(new_instance.id)
-        except NameError:
+        class_name = arg
+        if class_name not in classes:
             print("** class doesn't exist **")
+            return
+        new_instance = eval(class_name)()
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
         """Prints the string representation of an
@@ -40,56 +41,52 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        try:
-            data = arg.split()
-            class_name = eval(data[0])
-            if len(data) == 1:
-                print("** instance id missing **")
-                return
-            class_id = data[0] + "." + data[1]
-            if class_id not in storage.all().keys():
-                print("** no instance found **")
-                return
-            for key, value in storage.all().items():
-                if class_id == key:
-                    print(value)
+        data = arg.split()
+        if data[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(data) == 1:
+            print("** instance id missing **")
+            return
+        class_id = data[0] + "." + data[1]
+        if class_id not in storage.all().keys():
+            print("** no instance found **")
+            return
+        for key, value in storage.all().items():
+            if class_id == key:
+                print(value)
             # Other form
             # for value in storage.all().values():
             #     if class_id in value.__dict__["id"]:
             #         print(value)
-        except NameError:
-            print("** class doesn't exist **")
 
     def do_destroy(self, arg):
         if not arg:
             print("** class name missing **")
             return
-        try:
-            data = arg.split()
-            class_name = eval(data[0])
-            if len(data) == 1:
-                print("** instance id missing **")
-                return
-            class_id = data[0] + "." + data[1]
-            if class_id in storage.all().keys():
-                with open("file.json", "w", encoding="utf-8"):
-                    storage.all().pop(class_id)
-                    storage.save()
-            else:
-                print("** no instance found **")
-        except NameError:
+        data = arg.split()
+        if data[0] not in classes:
             print("** class doesn't exist **")
+            return
+        if len(data) == 1:
+            print("** instance id missing **")
+            return
+        class_id = data[0] + "." + data[1]
+        if class_id in storage.all().keys():
+            with open("file.json", "w", encoding="utf-8"):
+                storage.all().pop(class_id)
+                storage.save()
+        else:
+            print("** no instance found **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances based
         or not on the class name"""
-        try:
-            if arg:
-                class_name = eval(arg)
-            list_obj = [index.__str__() for index in storage.all().values()]
-            print(list_obj)
-        except NameError:
+        if arg not in classes:
             print("** class doesn't exist **")
+            return
+        list_obj = [index.__str__() for index in storage.all().values()]
+        print(list_obj)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding
@@ -97,29 +94,28 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        try:
-            data = arg.split()
-            class_name = eval(data[0])
-            if len(data) == 1:
-                print("** instance id missing **")
-                return
-            elif len(data) == 2:
-                print("** attribute name missing **")
-                return
-            elif len(data) == 3:
-                print("** value missing **")
-                return
-            class_id = data[0] + "." + data[1]
-            atrr_name = data[2]
-            if class_id not in storage.all().keys():
-                print("** no instance found **")
-                return
-            for key, value in storage.all().items():
-                if class_id == key:
-                    value.__dict__[atrr_name] = data[3]
-                    storage.save()
-        except NameError:
+        data = arg.split()
+        if data[0] not in classes:
             print("** class doesn't exist **")
+            return
+        if len(data) == 1:
+            print("** instance id missing **")
+            return
+        if len(data) == 2:
+            print("** attribute name missing **")
+            return
+        if len(data) == 3:
+            print("** value missing **")
+            return
+        class_id = data[0] + "." + data[1]
+        atrr_name = data[2]
+        if class_id not in storage.all().keys():
+            print("** no instance found **")
+            return
+        for key, value in storage.all().items():
+            if class_id == key:
+                value.__dict__[atrr_name] = data[3]
+                storage.save()
 
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
