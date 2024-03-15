@@ -6,4 +6,5 @@ Module in the State
 
 
 class State(BaseModel):
+    """Represents a state."""
     name = ""

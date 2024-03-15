@@ -6,6 +6,7 @@ Module in the Review
 
 
 class Review(BaseModel):
+    """Represents a review."""
     place_id = ""
     user_id = ""
     text = ""

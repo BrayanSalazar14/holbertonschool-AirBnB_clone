@@ -6,4 +6,5 @@ Module in the Amenity
 
 
 class Amenity(BaseModel):
+    """Represents an amenity."""
     name = ""
