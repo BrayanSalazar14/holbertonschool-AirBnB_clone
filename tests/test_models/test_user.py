@@ -10,15 +10,21 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         del self.model
 
-    def test_atrributes(self):
-        self.model.email = "bsalazarperdomo@gmail.com"
-        self.model.password = "***a"
-        self.model.first_name = "Brayan"
-        self.model.last_name = "Steven"
-        self.assertEqual(self.model.email, "bsalazarperdomo@gmail.com")
-        self.assertEqual(self.model.password, "***a")
-        self.assertEqual(self.model.first_name, "Brayan")
-        self.assertEqual(self.model.last_name, "Steven")
+    def test_email(self):
+        user = User(email="bsalazarperdomo@gmail.com")
+        self.assertEqual(user.email, "bsalazarperdomo@gmail.com")
+
+    def test_password(self):
+        user = User(password="***a")
+        self.assertEqual(user.password, "***a")
+
+    def test_first_name(self):
+        user = User(first_name="Brayan")
+        self.assertEqual(user.first_name, "Brayan")
+
+    def test_last_name(self):
+        user = User(last_name="Steven")
+        self.assertEqual(user.last_name, "Steven")
 
     def daughterClass(self):
         self.assertIsInstance(self.model, BaseModel)
