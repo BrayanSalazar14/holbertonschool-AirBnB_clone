@@ -12,18 +12,22 @@ class TestUser(unittest.TestCase):
 
     def test_email(self):
         user = User(email="bsalazarperdomo@gmail.com")
+        self.assertTrue(hasattr(user, "email"))
         self.assertEqual(user.email, "bsalazarperdomo@gmail.com")
 
     def test_password(self):
         user = User(password="***a")
+        self.assertTrue(hasattr(user, "password"))
         self.assertEqual(user.password, "***a")
 
     def test_first_name(self):
         user = User(first_name="Brayan")
+        self.assertTrue(hasattr(user, "first_name"))
         self.assertEqual(user.first_name, "Brayan")
 
     def test_last_name(self):
         user = User(last_name="Steven")
+        self.assertTrue(hasattr(user, "last_name"))
         self.assertEqual(user.last_name, "Steven")
 
     def daughterClass(self):
