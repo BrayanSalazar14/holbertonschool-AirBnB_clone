@@ -10,26 +10,32 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         del self.model
 
-    def test_email(self):
-        user = User(email="bsalazarperdomo@gmail.com")
+    def test_attr(self):
+        user = self.model
         self.assertTrue(hasattr(user, "email"))
-        self.assertEqual(user.email, "bsalazarperdomo@gmail.com")
-        self.assertNotEqual(user.email, None)
+        self.assertTrue(hasattr(user, "password"))
+        self.assertTrue(hasattr(user, "first_name"))
+        self.assertTrue(hasattr(user, "last_name"))
+
+    def test_email(self):
+        email = "bsalazarperdomo@gmail.com"
+        user = User(email=email)
+        self.assertEqual(user.email, email)
 
     def test_password(self):
-        user = User(password="***a")
-        self.assertTrue(hasattr(user, "password"))
-        self.assertEqual(user.password, "***a")
+        password = "***a"
+        user = User(password=password)
+        self.assertEqual(user.password, password)
 
     def test_first_name(self):
-        user = User(first_name="Brayan")
-        self.assertTrue(hasattr(user, "first_name"))
-        self.assertEqual(user.first_name, "Brayan")
+        first_name = "Brayan"
+        user = User(first_name=first_name)
+        self.assertEqual(user.first_name, first_name)
 
     def test_last_name(self):
-        user = User(last_name="Steven")
-        self.assertTrue(hasattr(user, "last_name"))
-        self.assertEqual(user.last_name, "Steven")
+        last_name = "Steven"
+        user = User(last_name=last_name)
+        self.assertEqual(user.last_name, last_name)
 
     def daughterClass(self):
         self.assertIsInstance(self.model, BaseModel)
