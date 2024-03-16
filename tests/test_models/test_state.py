@@ -44,3 +44,17 @@ class TestUser(unittest.TestCase):
                             my_model.created_at)
         self.assertNotEqual(my_model_json["updated_at"],
                             my_model.updated_at)
+
+    def test_str(self):
+        class_name = self.model.__class__.__name__
+        output = f"[{class_name}] ({self.model.id}) {str(self.model.__dict__)}"
+        self.assertEqual(output, self.model.__str__())
+
+    def test_save(self):
+        prev_created_at = self.model.created_at
+        prev_updated_at = self.model.updated_at
+        self.model.save()
+        now_created_at = self.model.created_at
+        now_updated_at = self.model.updated_at
+        self.assertNotEqual(prev_updated_at, now_updated_at)
+        self.assertEqual(prev_created_at, now_created_at)
