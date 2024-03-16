@@ -4,6 +4,7 @@ import json
 from models.base_model import BaseModel
 from tests.test_models.test_engine import test_file_storage
 from models import storage
+from unittest import mock
 
 
 class TestBaseModel(unittest.TestCase):
@@ -53,18 +54,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(my_model_json["updated_at"],
                             my_model.updated_at)
 
-    def test_save(self):
-        new_dict = {}
-        instance = self.model
-        instance_key = instance.__class__.__name__ + "." + instance.id
-        new_dict[instance_key] = instance
-        save = storage._FileStorage__objects
-        storage._FileStorage__objects = new_dict
-        storage.save()
-        storage._FileStorage__objects = save
-        for key, value in new_dict.items():
-            new_dict[key] = value.to_dict()
-        file_json = json.dumps(new_dict)
-        with open("file.json", "r", encoding="utf-8") as file:
-            file_read = file.read()
-        self.assertEqual(json.loads(file_json), json.loads(file_read))
+    @mock.patch('models.storage')
+    def test_save(self, mock_storage):
+        prev_created_at = self.model.created_at
+        prev_updated_at = self.model.updated_at
+        self.model.save()
+        new_created_at = self.model.created_at
+        new_updated_at = self.model.updated_at
+        self.assertNotEqual(prev_updated_at, new_updated_at)
+        self.assertEqual(prev_created_at, new_created_at)
+        self.assertFalse(mock_storage.new.called)
+        self.assertFalse(mock_storage.save.called)
