@@ -10,6 +10,12 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         del self.model
 
+    def daughterClass(self):
+        self.assertIsInstance(self.model, BaseModel)
+        self.assertTrue(hasattr(self.model, "id"))
+        self.assertTrue(hasattr(self.model, "created_at"))
+        self.assertTrue(hasattr(self.model, "updated_at"))
+
     def test_attr(self):
         user = self.model
         self.assertTrue(hasattr(user, "email"))
@@ -18,7 +24,6 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(user, "last_name"))
 
     def test_email(self):
-        self.assertTrue(hasattr(self.model, "email"))
         email = "bsalazarperdomo@gmail.com"
         user = User(email=email)
         self.assertEqual(user.email, email)
@@ -37,12 +42,6 @@ class TestUser(unittest.TestCase):
         last_name = "Steven"
         user = User(last_name=last_name)
         self.assertEqual(user.last_name, last_name)
-
-    def daughterClass(self):
-        self.assertIsInstance(self.model, BaseModel)
-        self.assertTrue(hasattr(self.model, "id"))
-        self.assertTrue(hasattr(self.model, "created_at"))
-        self.assertTrue(hasattr(self.model, "updated_at"))
 
     def test_atrr(self):
         my_user = self.model
@@ -84,3 +83,8 @@ class TestUser(unittest.TestCase):
                             my_model.created_at)
         self.assertNotEqual(my_model_json["updated_at"],
                             my_model.updated_at)
+
+    def test_str(self):
+        class_name = self.model.__class__.__name__
+        output = f"[{class_name}] ({self.model.id}) {str(self.model.__dict__)}"
+        self.assertEqual(output, self.model.__str__())
