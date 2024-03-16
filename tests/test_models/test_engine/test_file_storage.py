@@ -11,6 +11,9 @@ class TestFileStorage(unittest.TestCase):
     def tearDown(self):
         del self.model
 
+    def testFilePath(self):
+        self.assertEqual(self.model._FileStorage__file_path, "file.json")
+
     def test_all(self):
         new_dict = self.model.all()
         self.assertEqual(type(new_dict), dict)
