@@ -14,6 +14,7 @@ class TestUser(unittest.TestCase):
         user = User(email="bsalazarperdomo@gmail.com")
         self.assertTrue(hasattr(user, "email"))
         self.assertEqual(user.email, "bsalazarperdomo@gmail.com")
+        self.assertNotEqual(user.email, None)
 
     def test_password(self):
         user = User(password="***a")
