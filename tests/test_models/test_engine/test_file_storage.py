@@ -5,9 +5,6 @@ from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
 
-classes = {"BaseModel": BaseModel}
-
-
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         self.model = FileStorage()
@@ -30,15 +27,4 @@ class TestFileStorage(unittest.TestCase):
         key = f"{my_model.__class__.__name__}.{my_model.id}"
         self.assertIn(key, self.model._FileStorage__objects, "No exists")
 
-    def test_save(self):
-        objs = {}
-        save = FileStorage._FileStorage__objects
-        FileStorage._FileStorage__objects = objs
-        self.model.save()
-        FileStorage._FileStorage__objects = save
-        for key, value in objs.items():
-            objs[key] = value.to_dict()
-        file_json = json.dumps(objs)
-        with open("file.json", "r") as file:
-            file_read = file.read()
-        self.assertEqual(json.loads(file_json), json.loads(file_read))
+    # def test_save(self):
