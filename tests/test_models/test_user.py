@@ -18,6 +18,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(user, "last_name"))
 
     def test_email(self):
+        self.assertTrue(hasattr(self.model, "email"))
         email = "bsalazarperdomo@gmail.com"
         user = User(email=email)
         self.assertEqual(user.email, email)
