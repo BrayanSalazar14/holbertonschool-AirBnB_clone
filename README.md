@@ -1,11 +1,17 @@
-<img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20240317%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20240317T003639Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4b4adae900f923a33f7d1121ea43ba3304c13131f4fd0bafa74dbaa470ba7ea8">
+<center>
+<img src="https://s9.gifyu.com/images/SUYDt.gif" width="400">
+</center>
+<h1>What´s a command interpreter?</h1>
+<p>A command interpreter, often referred to as a shell, is a program that interprets and executes commands entered by the user. It provides a command-line interface (CLI) through which users can interact with the operating system or other software applications.
 
-<h1>Description</h1>
+The command interpreter takes the commands entered by the user, parses them, and then executes the appropriate actions based on those commands. It serves as an intermediary between the user and the underlying system, allowing users to perform various tasks such as managing files, running programs, configuring system settings, and more.
+
+Command interpreters come in different forms and have various features depending on the operating system and the specific shell being used. Examples of command interpreters include the Bash shell on Unix-like systems, Command Prompt on Windows, and PowerShell, which is also available on Windows but offers more advanced features than Command Prompt.</p>
 
 
 <h1>Execution 💻</h1>
 
--Your code will be compiled this way:
+- Your shell should work like this in interactive mode:
 
 
 ```python
@@ -13,6 +19,7 @@ $ ./console.py
 (hbnb) help
 
 Documented commands (type help <topic>):
+========================================
 EOF help quit
 
 (hbnb)
@@ -20,6 +27,31 @@ EOF help quit
 (hbnb) quit
 $
 ```
+- But also in non-interactive mode:
+
+```python
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+```
+
+<img src="https://s9.gifyu.com/images/SUYBJ.gif" width="1000">
 
 <br>
 
