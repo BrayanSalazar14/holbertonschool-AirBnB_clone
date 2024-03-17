@@ -53,7 +53,7 @@ $
 
 <p align="center">
   <b>An example of its use</b><br>
-  <img src="gif/Diseño-sin-titulo.gif" alt="Prueba">
+  <img src="gif/AirBnB.gif" alt="Prueba">
 </p>
 
 <br>
