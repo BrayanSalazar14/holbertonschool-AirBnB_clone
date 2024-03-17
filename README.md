@@ -1,5 +1,5 @@
 <center>
-<img src="https://s9.gifyu.com/images/SUYDt.gif" width="1200" height="680'">
+<img src="https://s9.gifyu.com/images/SUYDt.gif" height="680'">
 </center>
 <h1>What´s a command interpreter?</h1>
 <p>A command interpreter, often referred to as a shell, is a program that interprets and executes commands entered by the user. It provides a command-line interface (CLI) through which users can interact with the operating system or other software applications.
@@ -51,7 +51,10 @@ EOF  help  quit
 $
 ```
 
-<img src="https://s9.gifyu.com/images/SUYBJ.gif" width="1000">
+<center>
+- An example of its use
+<img src="https://s9.gifyu.com/images/SUYO9.md.gif">
+</center>
 
 <br>
 
