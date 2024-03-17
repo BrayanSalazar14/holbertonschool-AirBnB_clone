@@ -53,7 +53,7 @@ $
 
 <center>
 - An example of its use
-<img src="![test](https://s9.gifyu.com/images/SUYXg.gif)">
+<img src="https://s9.gifyu.com/images/SUYXg.gif" width="1200", heigth="680">
 </center>
 
 <br>
