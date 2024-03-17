@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 import unittest
+from unittest import mock
 import json
 from models.base_model import BaseModel
 from tests.test_models.test_engine import test_file_storage
-from models import storage
-from unittest import mock
+import models
 
 
 class TestBaseModel(unittest.TestCase):
@@ -56,12 +56,13 @@ class TestBaseModel(unittest.TestCase):
 
     @mock.patch('models.storage')
     def test_save(self, mock_storage):
-        prev_created_at = self.model.created_at
-        prev_updated_at = self.model.updated_at
-        self.model.save()
-        new_created_at = self.model.created_at
-        new_updated_at = self.model.updated_at
+        instance = self.model
+        prev_created_at = instance.created_at
+        prev_updated_at = instance.updated_at
+        instance.save()
+        new_created_at = instance.created_at
+        new_updated_at = instance.updated_at
         self.assertNotEqual(prev_updated_at, new_updated_at)
         self.assertEqual(prev_created_at, new_created_at)
-        self.assertFalse(mock_storage.new.called)
-        self.assertFalse(mock_storage.save.called)
+        self.assertTrue(mock_storage.new.called)
+        self.assertTrue(mock_storage.save.called)
