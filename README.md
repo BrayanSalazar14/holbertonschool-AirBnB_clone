@@ -51,10 +51,10 @@ EOF  help  quit
 $
 ```
 
-<center>
-- An example of its use
-![Prueba](gif/Diseño-sin-titulo.gif)
-</center>
+<p align="center">
+  <b>An example of its use</b><br>
+  <img src="gif/Diseño-sin-titulo.gif" alt="Prueba">
+</p>
 
 <br>
 
