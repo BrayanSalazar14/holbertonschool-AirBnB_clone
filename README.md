@@ -53,7 +53,7 @@ $
 
 <center>
 - An example of its use
-<img src="![Prueba](gif/Diseño-sin-titulo)" width="1200", heigth="680">
+![Prueba](gif/Diseño-sin-titulo.gif)
 </center>
 
 <br>
