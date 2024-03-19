@@ -122,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_count(self, arg):
+        """Count the number of instances of a specified class."""
         if not arg:
             print("** class name missing **")
             return
