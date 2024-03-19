@@ -121,6 +121,18 @@ class HBNBCommand(cmd.Cmd):
                 value.__dict__[atrr_name] = data[3]
                 storage.save()
 
+    def do_count(self, arg):
+        if not arg:
+            print("** class name missing **")
+            return
+        class_name = arg.split()
+        if class_name[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        count = [values.__class__.__name__ for values in storage.all(
+        ).values() if values.__class__.__name__ == class_name[0]]
+        print(count.count(class_name[0]))
+
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
         sys.exit()
