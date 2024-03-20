@@ -134,9 +134,9 @@ class HBNBCommand(cmd.Cmd):
         if class_name[0] not in classes:
             print("** class doesn't exist **")
             return
-        count = [values.__class__.__name__ for values in storage.all(
+        instance_eq = [values.__class__.__name__ for values in storage.all(
         ).values() if values.__class__.__name__ == class_name[0]]
-        print(count.count(class_name[0]))
+        print(instance_eq.count(class_name[0]))
 
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
