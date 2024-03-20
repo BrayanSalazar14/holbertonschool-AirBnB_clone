@@ -52,13 +52,17 @@ class HBNBCommand(cmd.Cmd):
         if class_id not in storage.all().keys():
             print("** no instance found **")
             return
-        for key, value in storage.all().items():
-            if class_id == key:
-                print(value)
-            # Other form
-            # for value in storage.all().values():
-            #     if class_id in value.__dict__["id"]:
-            #         print(value)
+        list_show = [value for key, value in storage.all().items()
+                     if class_id == key]
+        print(*list_show)
+        # Other form
+        # for key, value in storage.all().items():
+        #     if class_id == key:
+        #         print(value)
+        # Other form
+        # for value in storage.all().values():
+        #     if class_id in value.__dict__["id"]:
+        #         print(value)
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class
